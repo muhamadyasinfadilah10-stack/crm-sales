@@ -1,0 +1,153 @@
+/* ==========================================
+   TEMA: EKSKLUSIF MODERN MINIMALIST (HITAM - ABU)
+   ========================================== */
+body { 
+    background-color: #0A0A0A; /* Hitam Pekat */
+    color: #E0E0E0; 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+    margin: 0; padding: 0; line-height: 1.5;
+}
+.app-container { padding: 30px 15px; }
+
+/* LAYAR LOGIN (Keamanan PIN) - DIPERBAIKI */
+#layar-login {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #050505; z-index: 9999;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.login-box {
+    background-color: #141414; padding: 40px 30px; border-radius: 16px;
+    text-align: center; border: 1px solid #262626; width: 90%; max-width: 320px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+.login-box h2 { color: #FFF; margin-bottom: 10px; font-size: 22px; }
+.login-box p { color: #888; font-size: 13px; margin-bottom: 25px; }
+
+/* PERBAIKAN PIN AGAR TERLIHAT JELAS */
+.pin-input {
+    width: 100%; padding: 15px; font-size: 32px; text-align: center; letter-spacing: 15px;
+    background-color: #1E1E1E; color: #FFFFFF; border: 1px solid #444; border-radius: 12px; 
+    margin-bottom: 25px; box-sizing: border-box;
+}
+.pin-input:focus { outline: none; border-color: #777; background-color: #252525; }
+
+.btn-login {
+    background-color: #333333; color: #FFF; border: 1px solid #444; padding: 15px; width: 100%;
+    font-weight: 600; font-size: 16px; border-radius: 12px; cursor: pointer; transition: 0.2s;
+}
+.btn-login:hover { background-color: #444; }
+
+/* LAYOUT UTAMA */
+#layar-utama { display: none; } 
+.kotak-utama { max-width: 1100px; margin: 0 auto; background-color: transparent; }
+
+/* HEADER & BRANDING */
+.app-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 20px;}
+.app-header h2 { margin: 0; color: #FFF; font-weight: 700; font-size: 24px; letter-spacing: -0.5px;}
+.app-header .nama-toko { font-size: 13px; color: #AAA; font-weight: 600; background: #222; padding: 4px 10px; border-radius: 6px; border: 1px solid #333; margin-left: 5px;}
+.sub-teks { font-size: 13px; color: #777; margin-top: 5px;}
+
+.header-kanan { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.brand-watermark { font-size: 10px; color: #555; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+.btn-setting { background: #1A1A1A; border: 1px solid #333; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: 500; color: #AAA; font-size: 12px;}
+.btn-setting:hover { background: #222; color: #FFF; }
+
+.layout-grid { display: grid; grid-template-columns: 360px 1fr; gap: 30px; align-items: start; }
+
+/* PANEL BOKS (Tema Abu-abu Gelap) */
+.panel-kiri, .goal-box, .stat-box, .statis-box, .kartu-prospek { 
+    background-color: #141414; border: 1px solid #262626; border-radius: 16px; 
+}
+.panel-kiri { padding: 25px; position: sticky; top: 30px; }
+.panel-kanan { background-color: transparent; }
+
+h3 { color: #FFF; font-weight: 600; margin-top: 0; font-size: 16px;}
+
+/* Komponen Goal & Dashboard */
+.goal-box { padding: 20px; margin-bottom: 25px; }
+.goal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;}
+.goal-title { font-size: 12px; font-weight: 600; color: #888; text-transform: uppercase;}
+.btn-edit-goal { background: none; border: none; color: #AAA; font-size: 11px; cursor: pointer; font-weight: 500; text-decoration: underline;}
+.goal-angka { font-size: 22px; font-weight: 700; color: #FFF; margin: 0 0 12px 0;}
+.progress-bg { background-color: #222; height: 8px; border-radius: 10px; width: 100%; overflow: hidden;}
+.progress-fill { background-color: #E0E0E0; height: 100%; width: 0%; border-radius: 10px; transition: 1s ease-out;}
+.goal-persen { font-size: 11px; color: #777; text-align: right; margin-top: 6px;}
+
+.dashboard-container { display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+.stat-box { flex: 1; padding: 20px; min-width: 120px;}
+.stat-box h4 { margin: 0 0 8px 0; font-size: 11px; color: #777; text-transform: uppercase; font-weight: 600; }
+.stat-box h1 { margin: 0; font-size: 20px; color: #FFF; font-weight: 600; }
+.stat-box.utama { background-color: #1A1A1A; border-color: #333; flex: 100%; padding: 25px 20px; }
+.stat-box.utama h4 { color: #888; }
+.stat-box.utama h1 { font-size: 26px; }
+.profit-text { font-size: 13px; color: #4CAF50; font-weight: 500; margin-top: 5px;}
+
+/* Diagram Funnel */
+.statis-box { padding: 25px; margin-bottom: 25px; }
+.stat-bar-item { display: flex; align-items: center; margin-bottom: 12px; }
+.stat-label { width: 120px; font-size: 12px; color: #999; font-weight: 500;}
+.stat-bar-bg { flex: 1; background-color: #222; height: 10px; border-radius: 5px; margin: 0 15px; overflow: hidden;}
+.stat-bar-fill { height: 100%; border-radius: 5px; width: 0%; transition: 1s ease-out;}
+.fill-baru { background-color: #555; }
+.fill-proses { background-color: #888; }
+.fill-deal { background-color: #E0E0E0; }
+.stat-angka { width: 30px; font-size: 12px; color: #FFF; font-weight: 600; text-align: right;}
+
+/* Form (Gelap) */
+.form-grup { margin-bottom: 15px; }
+label { display: block; font-size: 12px; color: #888; margin-bottom: 6px; font-weight: 500;}
+input, select, textarea { width: 100%; padding: 12px 14px; background-color: #1A1A1A; color: #E0E0E0; border: 1px solid #333; border-radius: 10px; box-sizing: border-box; font-family: inherit; font-size: 13px; transition: 0.2s; }
+input[type="file"] { padding: 9px 14px; color: #888;}
+input:focus, select:focus, textarea:focus { outline: none; border-color: #666; background-color: #222; }
+textarea { resize: vertical; min-height: 60px; }
+.form-row { display: flex; gap: 10px; }
+.form-row > .form-grup { flex: 1; }
+
+.btn-utama { width: 100%; background-color: #2A2A2A; color: #FFF; border: 1px solid #444; padding: 14px; font-weight: 500; border-radius: 10px; cursor: pointer; font-size: 14px; transition: 0.2s; }
+.btn-utama:hover { background-color: #3A3A3A; border-color: #555; }
+.btn-ekspor { background: transparent; border: 1px solid #333; color: #AAA; padding: 8px 16px; font-size: 12px; border-radius: 8px; cursor: pointer; font-weight: 500; }
+.btn-ekspor:hover { background: #222; color: #FFF; }
+
+/* Kartu & Filter */
+.daftar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; background: #141414; padding: 15px 20px; border-radius: 12px; border: 1px solid #262626;}
+.filter-tabs { display: flex; gap: 15px; overflow-x: auto;}
+.btn-tab { background: none; border: none; color: #666; padding: 5px 0; font-weight: 500; font-size: 13px; cursor: pointer; border-bottom: 2px solid transparent;}
+.btn-tab.aktif { color: #FFF; border-bottom: 2px solid #FFF; }
+
+.kartu-prospek { padding: 20px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: flex-start; }
+.info-utama { display: flex; flex-direction: column; gap: 6px; width: 75%; }
+.nama-klien { font-size: 16px; font-weight: 600; color: #FFF; display: flex; align-items: center; gap: 10px;}
+.badge-status { font-size: 10px; padding: 4px 8px; border-radius: 6px; background-color: #222; border: 1px solid #333; color: #AAA;}
+.finansial-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; background-color: #1A1A1A; padding: 10px; border-radius: 8px; border: 1px solid #262626; margin-top: 5px;}
+.fin-item { font-size: 12px; display: flex; justify-content: space-between; color: #888;}
+.fin-val { font-weight: 600; color: #E0E0E0;}
+.teks-detail { font-size: 12px; color: #888; }
+.teks-catatan { font-size: 12px; color: #999; margin-top: 5px; padding: 10px; background-color: #1A1A1A; border-radius: 8px; border: 1px solid #262626;}
+.foto-thumbnail { max-width: 100px; max-height: 100px; border-radius: 8px; object-fit: cover; border: 1px solid #333; margin-top: 5px;}
+.peringatan { color: #E57373; font-weight: 600; background-color: #331A1A; padding: 2px 8px; border-radius: 6px; border: 1px solid #4D2626;}
+
+.aksi-grup { display: flex; gap: 8px; flex-direction: column; width: 22%; }
+.btn-aksi { background: #1A1A1A; border: 1px solid #333; color: #AAA; padding: 8px; font-size: 11px; border-radius: 8px; cursor: pointer; font-weight: 500;}
+.btn-aksi:hover { background-color: #2A2A2A; color: #FFF; }
+.btn-aksi.del:hover { background-color: #331A1A; color: #E57373; border-color: #4D2626; }
+
+/* Modals */
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); backdrop-filter: blur(4px); }
+.modal-content { background-color: #141414; margin: 10% auto; padding: 30px; width: 90%; max-width: 400px; border-radius: 16px; border: 1px solid #262626; box-shadow: 0 20px 50px rgba(0,0,0,0.5);}
+.tutup-modal { color: #666; float: right; font-size: 24px; cursor: pointer; }
+.timeline { border-left: 2px solid #333; padding-left: 15px; margin: 20px 0; max-height: 250px; overflow-y: auto; }
+.timeline-item { position: relative; margin-bottom: 15px; }
+.timeline-item::before { content: ''; position: absolute; left: -21px; top: 4px; width: 8px; height: 8px; background-color: #888; border-radius: 50%; border: 2px solid #141414;}
+.timeline-waktu { font-size: 11px; color: #777; font-weight: 500;}
+.timeline-teks { font-size: 13px; color: #CCC; margin: 0; }
+
+@media (max-width: 768px) {
+    .layout-grid { grid-template-columns: 1fr; }
+    .panel-kiri { position: static; margin-bottom: 20px; }
+    .dashboard-container { flex-direction: column; }
+    .kartu-prospek { flex-direction: column; gap: 15px; }
+    .info-utama, .aksi-grup { width: 100%; }
+    .aksi-grup { flex-direction: row; }
+    .btn-aksi { flex: 1; }
+    .daftar-header { flex-direction: column; align-items: flex-start; gap: 15px;}
+}

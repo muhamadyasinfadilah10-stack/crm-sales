@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM Pro</title>
+    <!-- Untuk APK offline, pastikan pemanggilan CSS dan JS menggunakan format folder relatif -->
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    
+    <!-- LAYAR KUNCI KEAMANAN (PIN) -->
+    <div id="layar-login">
+        <div class="login-box">
+            <h2>Security Lock</h2>
+            <p>Masukkan PIN Akses Anda<br>(Default: 1234)</p>
+            <input type="password" id="inputPinLogin" class="pin-input" maxlength="6" inputmode="numeric" placeholder="••••">
+            <button onclick="cekLogin()" class="btn-login">Buka Kunci</button>
+        </div>
+    </div>
+
+    <!-- LAYOUT APLIKASI UTAMA -->
+    <div id="layar-utama" class="app-container">
+        <div class="kotak-utama">
+            
+            <div class="app-header">
+                <div>
+                    <h2>Dashboard <span class="nama-toko" id="displayNamaToko">Usaha Saya</span></h2>
+                    <div class="sub-teks">Aplikasi Manajemen Penjualan Terpadu</div>
+                </div>
+                <!-- WATERMARK NEXIUM TECH DI POJOK ATAS -->
+                <div class="header-kanan">
+                    <span class="brand-watermark">Nexium Tech</span>
+                    <button class="btn-setting" onclick="bukaSettings()">⚙️ Pengaturan</button>
+                </div>
+            </div>
+
+            <div class="layout-grid">
+                
+                <!-- PANEL KIRI -->
+                <div class="panel-kiri">
+                    <div class="goal-box">
+                        <div class="goal-header">
+                            <span class="goal-title">Target Omset Transaksi</span>
+                            <button class="btn-edit-goal" onclick="editGoal()">Ubah Target</button>
+                        </div>
+                        <h3 class="goal-angka" id="teksTarget">Rp 0</h3>
+                        <div class="progress-bg"><div class="progress-fill" id="barTarget"></div></div>
+                        <div class="goal-persen" id="persenTarget">0% Tercapai</div>
+                    </div>
+
+                    <form id="formKlien">
+                        <input type="hidden" id="inputIdEdit">
+                        
+                        <div class="form-row">
+                            <div class="form-grup"><label>Klien / Instansi</label><input type="text" id="inputNama" required></div>
+                            <div class="form-grup"><label>Kontak (WA)</label><input type="text" id="inputKontak" required></div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-grup">
+                                <label>Status</label>
+                                <select id="inputStatus">
+                                    <option value="Prospek Baru">Prospek Baru</option>
+                                    <option value="Proses / Follow-up">Proses / Follow-up</option>
+                                    <option value="Deal / Closing">Deal / Closing</option>
+                                </select>
+                            </div>
+                            <div class="form-grup">
+                                <label>Sumber</label>
+                                <select id="inputSumber">
+                                    <option value="Sosial Media">Sosial Media</option>
+                                    <option value="Spanduk/Brosur">Brosur</option>
+                                    <option value="Referensi">Referensi</option>
+                                    <option value="Web/Marketplace">Web / Marketplace</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-grup"><label>Omset (Rp)</label><input type="number" id="inputNilai" required></div>
+                            <div class="form-grup"><label>Margin (Rp)</label><input type="number" id="inputMargin" required></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-grup"><label>Pengeluaran (Rp)</label><input type="number" id="inputPengeluaran" value="0" required></div>
+                            <div class="form-grup"><label>Tgl Follow-up</label><input type="date" id="inputFollowUp" required></div>
+                        </div>
+
+                        <div class="form-grup">
+                            <label>Foto Bukti (Opsional - Pastikan ukuran kecil)</label>
+                            <input type="file" id="inputFoto" accept="image/*">
+                        </div>
+
+                        <div class="form-grup" style="margin-bottom: 20px;">
+                            <label>Catatan Order</label>
+                            <textarea id="inputCatatan"></textarea>
+                        </div>
+                        <button type="submit" class="btn-utama" id="btnSimpan">+ Simpan Data</button>
+                    </form>
+                </div>
+
+                <!-- PANEL KANAN -->
+                <div class="panel-kanan">
+                    <div class="dashboard-container">
+                        <div class="stat-box utama">
+                            <h4>Total Keuntungan Bersih</h4>
+                            <h1 id="angkaProfit">Rp 0</h1> 
+                            <div class="profit-text" id="angkaOmsetKet">Total Omset: Rp 0</div>
+                        </div>
+                        <div class="stat-box"><h4>Klien</h4><h1 id="angkaTotal">0</h1></div>
+                        <div class="stat-box"><h4>Proses</h4><h1 id="angkaProses">0</h1></div>
+                        <div class="stat-box"><h4>Deal</h4><h1 id="angkaDeal">0</h1></div>
+                    </div>
+
+                    <div class="statis-box">
+                        <h3 style="margin-bottom: 20px;">Diagram Kinerja (Funnel)</h3>
+                        <div class="stat-bar-item"><div class="stat-label">1. Prospek Baru</div><div class="stat-bar-bg"><div class="stat-bar-fill fill-baru" id="barBaru"></div></div><div class="stat-angka" id="angkaBaru">0</div></div>
+                        <div class="stat-bar-item"><div class="stat-label">2. Proses</div><div class="stat-bar-bg"><div class="stat-bar-fill fill-proses" id="barProses"></div></div><div class="stat-angka" id="angkaProsesFunnel">0</div></div>
+                        <div class="stat-bar-item"><div class="stat-label">3. Deal</div><div class="stat-bar-bg"><div class="stat-bar-fill fill-deal" id="barDeal"></div></div><div class="stat-angka" id="angkaDealFunnel">0</div></div>
+                    </div>
+
+                    <div class="daftar-header">
+                        <div class="filter-tabs">
+                            <button class="btn-tab aktif" onclick="filterTab('Semua', this)">Semua</button>
+                            <button class="btn-tab" onclick="filterTab('Prospek Baru', this)">Baru</button>
+                            <button class="btn-tab" onclick="filterTab('Proses / Follow-up', this)">Proses</button>
+                            <button class="btn-tab" onclick="filterTab('Deal / Closing', this)">Deal</button>
+                        </div>
+                        <button class="btn-ekspor" onclick="downloadLaporan()">Unduh CSV</button>
+                    </div>
+
+                    <input type="text" id="inputCari" onkeyup="cariProspek()" placeholder="🔍 Cari klien..." style="margin-bottom: 20px;">
+                    <div id="wadahDaftar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL RIWAYAT -->
+    <div id="modalRiwayat" class="modal">
+        <div class="modal-content">
+            <span class="tutup-modal" onclick="tutupModal('modalRiwayat')">&times;</span>
+            <h3 id="namaRiwayatKlien" style="margin-bottom: 5px;">Riwayat Aktivitas</h3>
+            <div class="timeline" id="wadahTimeline"></div>
+            <div style="display:flex; gap:10px;">
+                <input type="text" id="inputCatatanRiwayat" placeholder="Tulis aktivitas..." style="margin-bottom:0;">
+                <button onclick="simpanRiwayat()" class="btn-utama" style="width:auto; padding: 0 15px;">Catat</button>
+            </div>
+            <input type="hidden" id="idKlienRiwayatAktif">
+        </div>
+    </div>
+
+    <!-- MODAL SETTINGS (PROFIL & BACKUP) -->
+    <div id="modalSettings" class="modal">
+        <div class="modal-content">
+            <span class="tutup-modal" onclick="tutupModal('modalSettings')">&times;</span>
+            <h3 style="margin-bottom: 20px;">Pengaturan Profil</h3>
+            
+            <div class="form-grup">
+                <label>Nama Bisnis Anda</label>
+                <input type="text" id="setNamaToko">
+            </div>
+            <div class="form-grup" style="margin-bottom: 20px;">
+                <label>PIN Login Baru (Angka)</label>
+                <input type="password" id="setPin" maxlength="6" inputmode="numeric">
+            </div>
+            <button onclick="simpanSettings()" class="btn-utama" style="margin-bottom: 30px;">Simpan Profil</button>
+            
+            <h3 style="margin-bottom: 15px; border-top: 1px solid #333; padding-top: 20px;">Database Backup</h3>
+            <p style="font-size: 12px; color: #777; margin-bottom: 15px;">Data tersimpan offline di HP ini. Lakukan backup berkala.</p>
+            
+            <div style="display: flex; gap: 10px;">
+                <button onclick="backupDatabase()" class="btn-ekspor" style="flex: 1; border-color:#555; color:#E0E0E0;">⬇️ Backup Data (.json)</button>
+            </div>
+            
+            <div style="margin-top: 15px; background: #1A1A1A; padding: 15px; border-radius: 10px; border: 1px solid #262626;">
+                <label>Restore Data (Pilih File Backup):</label>
+                <input type="file" id="inputFileRestore" accept=".json" style="margin-bottom: 10px;">
+                <button onclick="restoreDatabase()" class="btn-utama">⬆️ Restore Database</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../static/script.js"></script>
+</body>
+</html>
