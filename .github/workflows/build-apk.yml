@@ -24,11 +24,13 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install Dependencies
-        run: npm install
+      - name: Install Dependencies & Fix Permissions
+        run: |
+          npm install
+          chmod +x node_modules/.bin/* || true
 
       - name: Sync Capacitor
-        run: npx cap sync android
+        run: npx @capacitor/cli sync android
 
       - name: Make gradlew Executable
         run: chmod +x android/gradlew
